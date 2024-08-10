@@ -14,7 +14,7 @@ Python script which automates the organization and storage of files present in t
 ```bash
 git clone https://github.com/alassane8/Organizer.git
 ```
-- Go to the BattleShip folder :
+- Go to the Organizer folder :
 ```bash
 cd Organizer/code
 ```
