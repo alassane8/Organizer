@@ -22,6 +22,18 @@ cd Organizer/code
 ```bash
 python script.py
 ```
+## Add script.py to Windows Starter 
+Firstly, make sure Python is installed in the system.
+You can put the script in the startup folder using :
+
+```bash
+Windows + R
+```
+Then, type the following and press ENTER 
+
+```bash
+shell:startup
+```
 
 ## Informations
     An organizer Python script for automating the organization and storage of files in the Downloads 
