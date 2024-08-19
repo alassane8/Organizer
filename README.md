@@ -24,7 +24,7 @@ python script.py
 ```
 ## Add script.py to Windows Starter 
 Firstly, make sure Python is installed in the system.
-You can put the script in the startup folder using :
+You can put the script in the startup folder with a keyboard shortcut using :
 
 ```bash
 Windows + R
