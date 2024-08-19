@@ -6,7 +6,7 @@ Alassane WADE Organizer Python Script
                                        "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿ "
 </h2>         
 
-Organizer
+
 Python script which automates the organization and storage of files present in the Downloads folder.
 
 ## Open a terminal in full screen.
@@ -24,9 +24,11 @@ python script.py
 ```
 
 ## Informations
-An organizer Python script for automating the organization and storage of files in the Downloads 
-folder typically involves several key functionalities. The primary goal is to sort and move files 
-into appropriate directories based on certain criteria, such as file type, creation date, or other 
+    An organizer Python script for automating the organization and storage of files in the Downloads 
+folder typically involves several key functionalities. 
+
+    The primary goal is to sort and move files into appropriate directories based on certain criteria, 
+such as file type, creation date, or other 
 metadata. 
 
 ## File Categorization
@@ -38,17 +40,14 @@ Files can be organized into folders based on their creation or modification date
 month, or day.
 
 ## Directory Structure
-Create a folder structure in a destination directory, such as a "Documents" folder for all document 
+    Create a folder structure in a destination directory, such as a "Documents" folder for all document 
 files or "Pictures" for images.
-Optionally, allow nested directories, e.g., Documents/2024/July for files created or modified in 
+Allow nested directories, e.g., Documents/2024/July for files created or modified in 
 July 2024.
 
 ## File Operations
 - Moving Files: Physically move the files from the Downloads folder to the appropriate directory.
-- Copying Files: Optionally, copy files instead of moving them if you want to retain the originals 
-in the Downloads folder.
-- Renaming Files: Resolve naming conflicts by appending numbers or timestamps to filenames.
 
 ## Area for improvement
-Here, you can find the features I am currently working on in this repository.
+    Here, you can find the features I am currently working on in this repository.
 This allows you to be aware of the changes that are to come and see what needs to be improve. 
