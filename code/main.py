@@ -1,8 +1,16 @@
 from watchdog.observers import Observer
-from download_hander import DownloadsHandler
+from datetime import time
+from watchdog.events import FileSystemEventHandler
 from move_files import move_files, DOWNLOADS_FOLDER
 import time
 
+class DownloadsHandler(FileSystemEventHandler):
+    def on_created(self, event):
+        if event.is_directory:
+            return
+        print(f"New file detected: {event.src_path}")
+        time.sleep(1)
+        move_files()
 
 if __name__ == "__main__":
     print("Sorting existing files in Downloads...")
