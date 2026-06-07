@@ -28,7 +28,7 @@ def map_file_to_corresponding_directory(item, year_date, month_date):
             break
 
     if not destination_folder:
-        destination_folder = Path.home() / "Desktop"
+        destination_folder = Path.home() / "Documents"
 
     destination_path = destination_folder / year_date / month_date
 
