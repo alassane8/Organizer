@@ -5,14 +5,41 @@ from pathlib import Path
 DOWNLOADS_FOLDER = Path.home() / "Downloads"
 
 ORGANIZATION_RULES = {
-    'Images': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.tiff', '.svg'],
-    'Documents': ['.pdf', '.doc', '.docx', '.txt', '.xls', '.xlsx', '.ppt', '.pptx', '.odt'],
-    'Videos': ['.mp4', '.mov', '.avi', '.mkv', '.flv', '.wmv'],
-    'Music': ['.mp3', '.wav', '.aac', '.flac', '.ogg'],
-    'Archives': ['.zip', '.rar', '.7z', '.tar', '.gz'],
-    'Programs': ['.exe', '.msi', '.dmg', '.sh'],
-    'Others': []
+    Path.home() / "Pictures":  ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.tiff', '.svg'],
+    Path.home() / "Documents": ['.pdf', '.doc', '.docx', '.txt', '.xls', '.xlsx', '.ppt', '.pptx', '.odt'],
+    Path.home() / "Videos":    ['.mp4', '.mov', '.avi', '.mkv', '.flv', '.wmv'],
+    Path.home() / "Music":     ['.mp3', '.wav', '.aac', '.flac', '.ogg'],
 }
+
+def get_file_date_creation(item):
+    stat = item.stat()
+    year_date = datetime.datetime.fromtimestamp(stat.st_ctime).strftime('%Y')
+    month_date = datetime.datetime.fromtimestamp(stat.st_ctime).strftime('%m')
+    
+    return year_date, month_date
+
+def map_file_to_corresponding_directory(item, year_date, month_date):
+    file_extension = item.suffix.lower()
+    destination_folder = None
+
+    for folder_path, extensions in ORGANIZATION_RULES.items():
+        if file_extension in extensions:
+            destination_folder = folder_path
+            break
+
+    if not destination_folder:
+        destination_folder = Path.home() / "Desktop"
+
+    destination_path = destination_folder / year_date / month_date
+
+    if not destination_path.exists():
+        destination_path.mkdir(parents=True)
+
+    return destination_path
+
+def move_file_to_new_directory(item, destination_path):
+    shutil.move(str(item), str(destination_path))
+    print(f"Moved: {item.name} → {destination_path}")
 
 def move_files():
     for item in DOWNLOADS_FOLDER.iterdir():
@@ -20,32 +47,3 @@ def move_files():
             year_date, month_date = get_file_date_creation(item)
             destination_path = map_file_to_corresponding_directory(item, year_date, month_date)
             move_file_to_new_directory(item, destination_path)
-
-def get_file_date_creation(item):
-    stat = item.stat()
-    year_date = datetime.fromtimestamp(stat.st_ctime).strftime('%Y')
-    month_date = datetime.fromtimestamp(stat.st_ctime).strftime('%m')
-    
-    return year_date, month_date
-
-def map_file_to_corresponding_directory(item, year_date, month_date):
-        file_extension = item.suffix.lower()
-        destination_dir = None
-        
-        for dir_name, extensions in ORGANIZATION_RULES.items():
-            if file_extension in extensions:
-                destination_dir = dir_name
-                break
-            
-        if not destination_dir:
-            destination_dir = 'Others'
-
-        destination_path = DOWNLOADS_FOLDER / destination_dir / year_date / month_date
-
-        if not destination_path.exists():
-            destination_path.mkdir(parents=True)
-            
-        return destination_path
-    
-def move_file_to_new_directory(item, destination_path):
-        shutil.move(str(item), str(destination_path))
