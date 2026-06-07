@@ -1,65 +1,83 @@
 <h1 align="center">
-Alassane WADE Organizer Python Script
-</h1>  
+Alassane WADE — File Organizer
+</h1>
 
 <h2 align="center">
-                                       "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿ "
-</h2>         
+"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿"
+</h2>
 
+Python script that automatically organizes files from the Downloads folder into native Windows folders (Pictures, Documents, Videos, Music) sorted by year and month.
 
-Python script which automates the organization and storage of files present in the Downloads folder.
+## How it works
 
-## Open a terminal in full screen.
-- Clone this github repository in the path of your choice: 
+1. On startup, the script sorts all files already present in Downloads
+2. Then it watches the Downloads folder continuously
+3. Any new file downloaded is automatically moved to the right folder
+
+## Installation
+
+### 1. Clone the repository
 ```bash
 git clone https://github.com/alassane8/Organizer.git
 ```
-- Go to the Organizer folder :
-```bash
-cd Organizer/code
-```
-- Run the script: 
-```bash
-python script.py
-```
-## Add script.py to Windows Starter 
-Firstly, make sure Python is installed in the system.
-You can put the script in the startup folder with a keyboard shortcut using :
 
+### 2. Install dependencies
 ```bash
-Windows + R
-```
-Then, type the following and press ENTER 
-
-```bash
-shell:startup
+pip install watchdog
 ```
 
-## Informations
-An organizer Python script for automating the organization and storage of files in the Downloads 
-folder typically involves several key functionalities. 
+### 3. Run at Windows startup
 
-The primary goal is to sort and move files into appropriate directories based on certain criteria, 
-such as file type, creation date, or other 
-metadata. 
+Open the startup folder:
+```
+Win + R → shell:startup → Enter
+```
 
-## File Categorization
-- By File Type: 
-Common types include documents (PDFs, DOCs, etc.), images (JPGs, PNGs, etc.), videos (MP4s, AVIs, etc.), 
-audio files (MP3s, WAVs, etc.), executables, and compressed files (ZIPs, RARs, etc.).
-- By Date: 
-Files can be organized into folders based on their creation or modification date, such as year, 
-month, or day.
+Then:
+- Move the `code/` folder into `shell:startup`
+- Place `launcher.bat` directly in `shell:startup`
 
-## Directory Structure
-Create a folder structure in a destination directory, such as a "Documents" folder for all document 
-files or "Pictures" for images.
-Allow nested directories, e.g., Documents/2024/July for files created or modified in 
-July 2024.
+```
+shell:startup/
+├── launcher.bat
+└── code/
+    ├── main.py
+    ├── move_files.py
+    └── download_handler.py
+```
 
-## File Operations
-- Moving Files: Physically move the files from the Downloads folder to the appropriate directory.
+The script will now launch silently in the background every time Windows starts.
+
+## File categorization
+
+| Destination         | Extensions                                              |
+|---------------------|---------------------------------------------------------|
+| `~/Pictures`        | `.jpeg` `.jpg` `.png` `.gif` `.bmp` `.tiff` `.svg`     |
+| `~/Documents`       | `.pdf` `.doc` `.docx` `.txt` `.xls` `.xlsx` `.ppt` `.pptx` `.odt` |
+| `~/Videos`          | `.mp4` `.mov` `.avi` `.mkv` `.flv` `.wmv`              |
+| `~/Music`           | `.mp3` `.wav` `.aac` `.flac` `.ogg`                    |
+| `~/Desktop`         | Everything else                                         |
+
+## Directory structure
+
+Files are sorted by year and month inside each native folder:
+
+```
+Pictures/
+└── 2026/
+    └── 06/
+        └── photo.png
+
+Documents/
+└── 2026/
+    └── 06/
+        └── report.pdf
+```
 
 ## Area for improvement
-Here, you can find the features I am currently working on in this repository.
-This allows you to be aware of the changes that are to come and see what needs to be improve. 
+Here you can find features currently being worked on.
+
+- [ ] System tray icon to show the script is running
+- [ ] Logs file to track all moved files
+- [ ] Config file to customize rules without touching the code
+- [ ] Support for additional file types
