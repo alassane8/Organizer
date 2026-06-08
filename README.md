@@ -42,8 +42,7 @@ shell:startup/
 ├── launcher.bat
 └── code/
     ├── main.py
-    ├── move_files.py
-    └── download_handler.py
+    └── move_files.py
 ```
 
 The script will now launch silently in the background every time Windows starts.
