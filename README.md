@@ -34,12 +34,12 @@ Win + R → shell:startup → Enter
 ```
 
 Then:
-- Move the `code/` folder into `shell:startup`
+- Copy the `code/` folder into `shell:startup`
 - Place `launcher.bat` directly in `shell:startup`
 
 ```
 shell:startup/
-├── launcher.bat
+├── launcher.bat   ← uses %~dp0, no hardcoded path
 └── code/
     ├── main.py
     └── move_files.py
