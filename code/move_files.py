@@ -37,9 +37,24 @@ def map_file_to_corresponding_directory(item, year_date, month_date):
 
     return destination_path
 
+def get_unique_destination(destination_path, item):
+    candidate = destination_path / item.name
+    if not candidate.exists():
+        return candidate
+
+    stem = item.stem
+    suffix = item.suffix
+    counter = 1
+    while True:
+        candidate = destination_path / f"{stem} ({counter}){suffix}"
+        if not candidate.exists():
+            return candidate
+        counter += 1
+
 def move_file_to_new_directory(item, destination_path):
-    shutil.move(str(item), str(destination_path))
-    print(f"Moved: {item.name} → {destination_path}")
+    target = get_unique_destination(destination_path, item)
+    shutil.move(str(item), str(target))
+    print(f"Moved: {item.name} → {target}")
 
 def move_files():
     for item in DOWNLOADS_FOLDER.iterdir():
